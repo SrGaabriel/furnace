@@ -23,15 +23,3 @@ class GodboltClient {
         const val GODBOLT_API = "https://godbolt.org/api"
     }
 }
-
-suspend fun main() {
-    println(GodboltClient().compiler.sendCompilationRequest(
-        language = "rust",
-        compiler = "r190",
-        code = """
-            fn main() {
-                println!("Hello, World!")
-            }
-        """.trimIndent()
-    ))
-}
