@@ -27,17 +27,19 @@ val CommandService.compile: Command<BotCommandContext> get() = command("compile"
 
 private suspend fun parseParameters(context: BotCommandContext): Parameters? = with(context) {
     val linedContent = message.content.lines().filter(String::isNotBlank)
-    val languageId = linedContent[0].split(" ").drop(1).firstOrNull()?.lowercase()
+    val languageId = linedContent[0].trim().split(" ").filter(String::isNotBlank).drop(1).firstOrNull()?.lowercase()
         ?: return@with reply("You must provide a valid `language` parameter!").let { null }
     val language = furnace.availableLanguages.firstOrNull { it.id == languageId }
         ?: return@with reply("The provided language `$languageId` is not supported!").let { null }
 
-    val remainingContent = linedContent.drop(1).joinToString("\n")
-    if (!remainingContent.startsWith("```") || !remainingContent.endsWith("```")) {
+    val remainingContent = linedContent
+        .asSequence()
+        .drop(1)
+    if (remainingContent.first() != ("```") || remainingContent.last() != "```") {
         reply("Invalid codeblock provided!")
         return@with null
     }
-    return Parameters(language, remainingContent.replace("```", ""))
+    return Parameters(language, remainingContent.filter { it != "```" }.joinToString("\n"))
 }
 
 private data class Parameters(
