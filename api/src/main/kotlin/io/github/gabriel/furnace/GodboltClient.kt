@@ -4,15 +4,23 @@ import io.github.gabriel.furnace.routes.CompilerRoute
 import io.github.gabriel.furnace.routes.LanguageRoute
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.http.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.logging.*
+import io.ktor.serialization.kotlinx.json.*
+import kotlinx.serialization.json.Json
 
+@Suppress("deprecation")
 class GodboltClient {
     val client: HttpClient = HttpClient(CIO.create()) {
-        install(JsonFeature) {
-            serializer = KotlinxSerializer(kotlinx.serialization.json.Json { encodeDefaults = true; ignoreUnknownKeys = true })
-            acceptContentTypes = acceptContentTypes + ContentType("application", "json")
+        install(ContentNegotiation) {
+            json(Json {
+                encodeDefaults = true
+                ignoreUnknownKeys = true
+            })
+        }
+        install(Logging) {
+            logger = Logger.EMPTY
+            level = LogLevel.INFO
         }
     }
 

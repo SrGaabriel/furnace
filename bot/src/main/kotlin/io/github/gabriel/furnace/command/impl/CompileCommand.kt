@@ -16,11 +16,13 @@ val CommandService.compile: Command<BotCommandContext> get() = command("compile"
             compiler = language.defaultCompiler,
             language = language.id
         )
+        println(code)
+        println(compilation.stdout.parse())
         reply("""
             **EXECUTION COMPLETE** *(${compilation.execTime}ms)*      
             
-            **Output:**
-            `${compilation.stdout.parse()}`
+            ${if (compilation.stdout.isNotEmpty()) """**Output:**
+            `${compilation.stdout.parse()}`""" else "No output generated."}
         """.trimIndent())
     }
 }

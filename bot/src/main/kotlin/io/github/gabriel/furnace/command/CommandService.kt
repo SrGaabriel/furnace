@@ -3,12 +3,16 @@ package io.github.gabriel.furnace.command
 import com.deck.core.DeckClient
 import dev.gaabriel.clubs.bot.BotClubsInstance
 import io.github.gabriel.furnace.command.impl.compile
+import io.github.gabriel.furnace.command.impl.languages
+
+const val PREFIX = "$"
 
 class CommandService {
-    val clubs = BotClubsInstance("-")
+    val clubs = BotClubsInstance(PREFIX)
 
     suspend fun start(client: DeckClient) {
         clubs.register(compile)
+        clubs.register(languages)
         clubs.start(client)
     }
 }
