@@ -19,8 +19,8 @@ class GodboltClient {
             })
         }
         install(Logging) {
-            logger = Logger.EMPTY
-            level = LogLevel.INFO
+            logger = Logger.SIMPLE
+            level = LogLevel.NONE
         }
     }
 

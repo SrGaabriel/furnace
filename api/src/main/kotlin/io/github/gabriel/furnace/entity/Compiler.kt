@@ -55,5 +55,12 @@ data class RawCompilationResponse(
     val stderr: List<RawText>,
     val didExecute: Boolean,
     val code: Int,
-    val execTime: Long
+    val execTime: Long? = null,
+    val buildResult: RawCompilationResponseResult
+)
+
+@Serializable
+data class RawCompilationResponseResult(
+    val code: Int,
+    val stderr: List<RawText>
 )
