@@ -1,6 +1,5 @@
 package io.github.gabriel.furnace.command.impl
 
-import com.deck.extras.content.content
 import dev.gaabriel.clubs.bot.util.command
 import dev.gaabriel.clubs.common.struct.arguments.optional
 import dev.gaabriel.clubs.common.util.integer
@@ -24,24 +23,20 @@ val CommandService.languages get() = command("languages") {
             return@runs
         }
         val languages = languagesAsSizedCollection.paginate(page = actualPage, pageSize = PAGE_SIZE) as SizedCollection
-        reply {
-            content {
-                embed {
-                    title = "Available Languages - Page $actualPage"
-                    color = 3092565
-                    description = buildString {
-                        appendLine("These are only **${languages.delegate.size}** languages out of **${languagesAsSizedCollection.delegate.size}** in total. If you want more, try specifying another page!")
-                        appendLine()
-                        for (language in languages) {
-                            appendLine("**${languagesAsSizedCollection.indexOf(language) + 1})** ${language.name} _(${language.id})_")
-                        }
-                    }
-                    footer {
-                        text = "Use ${PREFIX}language [page] to find out more!"
-                    }
-                    timestamp = Clock.System.now()
+        replyEmbed {
+            title = "Available Languages - Page $actualPage"
+            color = 3092565
+            description = buildString {
+                appendLine("These are only **${languages.delegate.size}** languages out of **${languagesAsSizedCollection.delegate.size}** in total. If you want more, try providing another page!")
+                appendLine()
+                for (language in languages) {
+                    appendLine("**${languagesAsSizedCollection.indexOf(language) + 1})** ${language.name} _(${language.id})_")
                 }
             }
+            footer {
+                text = "Use ${PREFIX}language [page] to find out more!"
+            }
+            timestamp = Clock.System.now()
         }
     }
 }

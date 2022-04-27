@@ -1,6 +1,5 @@
 package io.github.gabriel.furnace.command.impl
 
-import com.deck.extras.content.content
 import dev.gaabriel.clubs.bot.impl.BotCommandContext
 import dev.gaabriel.clubs.bot.util.command
 import dev.gaabriel.clubs.common.struct.Command
@@ -46,42 +45,34 @@ private suspend fun BotCommandContext.replyAccordinlyToCompilationResults(
     compilation: RawCompilationResponse
 ) {
     if (compilation.isSuccessful()) {
-        reply {
-            content {
-                embed {
-                    title = "Successful Compilation"
-                    color = 65377
-                    description = """
+        replyEmbed {
+            title = "Successful Compilation"
+            color = 65377
+            description = """
                         The `${language.name}` code was compiled successfully using the `${language.defaultCompiler}` compiler.
                         
                         **Output:**
                         ```${compilation.stdout.parse()}```
                     """.trimIndent()
-                    footer {
-                        text = "Executed in ${compilation.execTime}ms"
-                    }
-                    timestamp = Clock.System.now()
-                }
+            footer {
+                text = "Executed in ${compilation.execTime}ms"
             }
+            timestamp = Clock.System.now()
         }
     } else {
-        reply {
-            content {
-                embed {
-                    title = "Failed Compilation"
-                    color = 15269888
-                    description = """
+        replyEmbed {
+            title = "Failed Compilation"
+            color = 15269888
+            description = """
                         The `${language.name}` code couldn't be compiled with the `${language.defaultCompiler}` compiler.
                         
                         **Error:**
                         ```${compilation.buildResult.stderr.parse()}```
                     """.trimIndent()
-                    footer {
-                        text = "Ended with code ${compilation.code}"
-                    }
-                    timestamp = Clock.System.now()
-                }
+            footer {
+                text = "Ended with code ${compilation.code}"
             }
+            timestamp = Clock.System.now()
         }
     }
 }

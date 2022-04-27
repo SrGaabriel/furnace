@@ -1,11 +1,11 @@
 package io.github.gabriel.furnace.command
 
-import com.deck.core.DeckClient
 import dev.gaabriel.clubs.bot.BotClubsInstance
+import io.github.deck.core.DeckClient
 import io.github.gabriel.furnace.command.impl.compile
 import io.github.gabriel.furnace.command.impl.languages
 
-const val PREFIX = "$"
+const val PREFIX = "%"
 
 class CommandService {
     val clubs = BotClubsInstance(PREFIX)

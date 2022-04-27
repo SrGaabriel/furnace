@@ -13,7 +13,6 @@ dependencies {
     implementation(project(":api"))
 
     implementation("org.jetbrains.exposed:exposed-core:0.38.1")
-    implementation("com.github.SrGaabriel.deck:bot-deck-core:0.0.7-BOT")
-    implementation("com.github.SrGaabriel.deck:bot-deck-extras:0.0.7-BOT")
-    implementation("com.github.SrGaabriel.clubs:clubs-bot:0.8-SNAPSHOT")
+    implementation("com.github.SrGaabriel.deck:bot-deck-core:0.1.2-BOT")
+    implementation("com.github.SrGaabriel.clubs:clubs-bot:0.9.1-SNAPSHOT")
 }

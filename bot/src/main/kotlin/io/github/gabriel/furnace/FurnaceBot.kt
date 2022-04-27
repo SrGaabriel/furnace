@@ -1,6 +1,6 @@
 package io.github.gabriel.furnace
 
-import com.deck.core.DeckClient
+import io.github.deck.core.DeckClient
 import io.github.gabriel.furnace.command.CommandService
 import io.github.gabriel.furnace.entity.RawCompiler
 import io.github.gabriel.furnace.entity.RawLanguage

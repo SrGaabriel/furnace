@@ -9,4 +9,3 @@ suspend fun main() {
     _furnace = FurnaceBot(loadConfig())
     furnace.start()
 }
-
