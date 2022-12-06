@@ -1,6 +1,7 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     kotlin("jvm")
-    kotlin("plugin.serialization") version "1.6.10"
+    alias(furnace.plugins.kotlinx.serialization)
 }
 
 repositories {
@@ -9,10 +10,10 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation("io.ktor:ktor-client-core:2.0.0")
-    implementation("io.ktor:ktor-client-cio:2.0.0")
-    implementation("io.ktor:ktor-client-logging:2.0.0")
-    implementation("io.ktor:ktor-client-serialization:2.0.0")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:2.0.0")
-    implementation("io.ktor:ktor-client-content-negotiation:2.0.0")
+    implementation(furnace.ktor.client.core)
+    implementation(furnace.ktor.client.cio)
+    implementation(furnace.ktor.client.logging)
+    implementation(furnace.ktor.client.serialization)
+    implementation(furnace.ktor.client.content.negotiation)
+    implementation(furnace.ktor.serialization.kotlinx.json)
 }

@@ -12,13 +12,16 @@ import io.github.gabriel.furnace.util.parse
 import kotlinx.datetime.Clock
 
 val CommandService.compile: Command<BotCommandContext> get() = command("compile") {
-    runs {
-        val (language, code) = parseParameters(this) ?: return@runs
+    executor {
+        val (language, code) = parseParameters(this) ?: return@executor
+
+        message.addReaction(1596569)
         val compilation = furnace.godboltClient.compiler.sendCompilationRequest(
             code = code,
             compiler = language.defaultCompiler,
             language = language.id
         )
+        message.removeReaction(1596569)
         replyAccordinlyToCompilationResults(language, compilation)
     }
 }
@@ -45,14 +48,20 @@ private suspend fun BotCommandContext.replyAccordinlyToCompilationResults(
     compilation: RawCompilationResponse
 ) {
     if (compilation.isSuccessful()) {
+        val output = compilation.stdout.parse()
+        val outputMessage = if (output.isEmpty()) "**Output:** No output was generated" else
+            """
+                **Output:**
+                ```${compilation.stdout.parse()}```
+            """.trimIndent()
+
         replyEmbed {
             title = "Successful Compilation"
             color = 65377
             description = """
                         The `${language.name}` code was compiled successfully using the `${language.defaultCompiler}` compiler.
                         
-                        **Output:**
-                        ```${compilation.stdout.parse()}```
+                        $outputMessage
                     """.trimIndent()
             footer {
                 text = "Executed in ${compilation.execTime}ms"

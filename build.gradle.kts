@@ -1,5 +1,6 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    kotlin("jvm") version "1.6.10"
+    alias(furnace.plugins.kotlin.jvm)
 }
 
 subprojects {
