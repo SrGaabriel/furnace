@@ -6,13 +6,12 @@ plugins {
 
 repositories {
     mavenCentral()
-    maven("https://jitpack.io/")
 }
 
 dependencies {
     implementation(kotlin("stdlib"))
     implementation(project(":api"))
 
-    implementation(furnace.deck)
+    implementation(furnace.deck.core)
     implementation(furnace.clubs)
 }

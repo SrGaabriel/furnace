@@ -1,13 +1,15 @@
 package io.github.gabriel.furnace
 
-import io.github.deck.core.DeckClient
+import io.github.srgaabriel.deck.core.DeckClient
 import io.github.gabriel.furnace.command.CommandService
 import io.github.gabriel.furnace.entity.RawCompiler
 import io.github.gabriel.furnace.entity.RawLanguage
 import io.github.gabriel.furnace.util.FurnaceConfig
 
 class FurnaceBot(config: FurnaceConfig) {
-    val client: DeckClient = DeckClient(config.token)
+    val client: DeckClient = DeckClient(config.token) {
+        debugMode()
+    }
     val godboltClient: GodboltClient = GodboltClient()
 
     val availableLanguages: MutableList<RawLanguage> = mutableListOf()

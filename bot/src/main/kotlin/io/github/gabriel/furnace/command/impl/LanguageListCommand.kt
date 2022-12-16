@@ -1,7 +1,7 @@
 package io.github.gabriel.furnace.command.impl
 
-import dev.gaabriel.clubs.bot.util.command
-import dev.gaabriel.clubs.common.util.integer
+import io.github.srgaabriel.clubs.bot.util.command
+import io.github.srgaabriel.clubs.common.util.integer
 import io.github.gabriel.furnace.command.CommandService
 import io.github.gabriel.furnace.command.PREFIX
 import io.github.gabriel.furnace.furnace

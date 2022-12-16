@@ -1,7 +1,7 @@
 package io.github.gabriel.furnace.command
 
-import dev.gaabriel.clubs.bot.clubs
-import io.github.deck.core.DeckClient
+import io.github.srgaabriel.clubs.bot.clubs
+import io.github.srgaabriel.deck.core.DeckClient
 import io.github.gabriel.furnace.command.impl.compile
 import io.github.gabriel.furnace.command.impl.languages
 

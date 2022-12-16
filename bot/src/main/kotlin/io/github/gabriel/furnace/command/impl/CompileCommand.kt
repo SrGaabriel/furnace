@@ -1,8 +1,8 @@
 package io.github.gabriel.furnace.command.impl
 
-import dev.gaabriel.clubs.bot.impl.BotCommandContext
-import dev.gaabriel.clubs.bot.util.command
-import dev.gaabriel.clubs.common.struct.Command
+import io.github.srgaabriel.clubs.bot.impl.BotCommandContext
+import io.github.srgaabriel.clubs.bot.util.command
+import io.github.srgaabriel.clubs.common.struct.Command
 import io.github.gabriel.furnace.command.CommandService
 import io.github.gabriel.furnace.entity.RawCompilationResponse
 import io.github.gabriel.furnace.entity.RawLanguage
